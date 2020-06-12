@@ -24,3 +24,6 @@ Route::get('/home', function() {
 })->name('home');
 Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::post('/post', 'AuthController@postPost');
+
+Route::get('/berita', 'BeritaController@index')->name('berita.index');
+Route::post('/berita', 'BeritaController@store')->name('berita.store');

@@ -20,7 +20,7 @@
 
   <body class="text-center">
    
-    <form class="form-signin"  method="POST" action="{{ route ('save') }}" enctype="multipart/from-data"> 
+    <form class="form-signin"  method="POST" action="{{ route ('berita.store') }}" enctype="multipart/form-data"> 
     @csrf
       <h1 class="h3 mb-3 font-weight-normal">---</h1>
       <label for="inputJudul" class="sr-only">Judul</label>
