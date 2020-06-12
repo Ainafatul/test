@@ -14,19 +14,19 @@ class BeritaController extends Controller
     public function store(Request $request)    
     {
 
-        $berita = $request->all();
-       
-
-        if ($request->hasFile('image')){
+        Berita::create($request->except("image"));
+       $berita = Berita::all()->last();
+        
+        if ($request->file('image')){
+            $file = $request->file('image');
             $filename= time().".". $file->getClientOriginalExtension();
             $location= public_path('/uploads/berita/');
             $file->move($location,$filename);
             $berita->image = $filename;
-
         }
+        $berita->save();
 
              
-        Berita::create($berita);
         return response()->json([
             'success'=>true,
             'message' =>'berita created'
