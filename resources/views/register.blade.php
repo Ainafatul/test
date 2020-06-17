@@ -20,7 +20,7 @@
 
   <body class="text-center">
    
-    <form class="form-signin" method="POST" action="/register">
+  <form class="form-signin" method="POST" action="{{route ('register') }}">
     @csrf
       <h1 class="h3 mb-3 font-weight-normal">Register</h1>
       <label for="inputName" class="sr-only">Name</label>

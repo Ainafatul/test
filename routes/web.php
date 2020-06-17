@@ -15,15 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', 'AuthController@getRegister');
-Route::post('/register', 'AuthController@postRegister');
-Route::get('/login', 'AuthController@getLogin');
-Route::post('/login', 'AuthController@postLogin');
+Route::get('/register', 'AuthController@getRegister')->name('register')->middleware('guest');
+Route::post('/register', 'AuthController@postRegister')->middleware('guest');
+Route::get('/login', 'AuthController@getLogin')->middleware('guest')->name('login');
+Route::post('/login', 'AuthController@postLogin')->middleware('guest');
+Route::get('/logout', 'AuthController@logout')->name('logout')->middleware('auth')->name('logout');
 Route::get('/home', function() {
-    return 'HOME';
-})->name('home');
-Route::get('/logout', 'AuthController@logout')->name('logout');
+    return view('home');
+})->middleware('auth')->name('home');
 Route::post('/post', 'AuthController@postPost');
 
-Route::get('/berita', 'BeritaController@index')->name('berita.index');
-Route::post('/berita', 'BeritaController@store')->name('berita.store');
+Route::get('/tambah', 'BeritaController@index')->name('tambah');
+Route::post('/save', 'BeritaController@store')->name('berita.store');
+Route::get('/berita', 'BeritaController@show')->name('berita.show');
+Route::get('/edit/{id}', 'BeritaController@edit');
+Route::put('/update/{id}', 'BeritaController@update');
+Route::get('delete/{id}','BeritaController@delete');
+
+Route::get('/jual','JualController@index')->name('jual.index');
+Route::post('/jualUpload','JualController@store')->name('jual.store');
+
+

@@ -39,13 +39,16 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
 
         ]);
-        return redirect()->back();
+        
+        auth()->loginUsingId($user->id);
+        
+        return redirect()->route('home');
     } 
     public function logout()
     {
         \Auth::logout();
 
-        return redirect()->route('logout');
+        return redirect()->route('login');
     }
 }
  
